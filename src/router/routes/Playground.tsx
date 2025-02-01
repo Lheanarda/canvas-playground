@@ -17,7 +17,7 @@ const TestRoutes: Route[] = [
   {
     path: "/text-particles",
     component: lazyWithRetries(
-      () => import("@src/pages/introduction/fractals")
+      () => import("@src/pages/introduction/textParticles")
     ),
   },
   {

@@ -30,6 +30,13 @@
         -moz-border-radius: 0;
         border-radius: 0;
     }
+    input[type=range][orient=vertical] {
+        writing-mode: vertical-lr;
+        direction: rtl;
+        appearance: slider-vertical;
+        width: 16px;
+        vertical-align: bottom;
+    }
 }
 
 @layer components{
