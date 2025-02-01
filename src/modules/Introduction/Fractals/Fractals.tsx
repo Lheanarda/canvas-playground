@@ -44,6 +44,9 @@ const FractalsPage: React.FC = () => {
                 }
               />
             </div>
+            <div className="absolute right-0 bottom-0 text-2xl dark:text-blue-100 text-blue-600 font-bold">
+              Fractals
+            </div>
           </div>
           <Canvas className="w-[90%]" ref={ref} />
         </div>
