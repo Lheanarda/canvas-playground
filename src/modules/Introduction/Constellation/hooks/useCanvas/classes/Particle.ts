@@ -48,8 +48,6 @@ class Particle {
   update() {
     this.draw();
 
-    const { canvas } = this.canvasEl;
-
     if (this.effectParticles.cursor.pressed) {
       const dx = this.position.x - this.effectParticles.cursor.x;
       const dy = this.position.y - this.effectParticles.cursor.y;

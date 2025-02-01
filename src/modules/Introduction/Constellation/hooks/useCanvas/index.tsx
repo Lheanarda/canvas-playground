@@ -1,13 +1,9 @@
 import { RefObject, useEffect } from "react";
 import EffectParticles from "./classes/EffectParticles";
 
-const useCanvas = (
-  ref: RefObject<HTMLCanvasElement>,
-  containerRef: RefObject<HTMLDivElement>
-) => {
+const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
   useEffect(() => {
     if (!ref.current) return;
-    if (!containerRef?.current) return;
     const canvas = ref.current;
     const context = canvas.getContext("2d");
 
@@ -36,7 +32,7 @@ const useCanvas = (
     }
 
     animate();
-  }, [ref, containerRef]);
+  }, [ref]);
 };
 
 export default useCanvas;

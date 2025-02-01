@@ -15,6 +15,24 @@ const navigations: Navigations = [
         Icon: EmptyIcon,
         title: "Constellation",
       },
+      {
+        id: "fractals",
+        navLink: "/fractals",
+        Icon: EmptyIcon,
+        title: "Fractals",
+      },
+      {
+        id: "text-particles",
+        navLink: "/text-particles",
+        Icon: EmptyIcon,
+        title: "Text Particles",
+      },
+      {
+        id: "snake-and-ladders",
+        navLink: "/snake-and-ladders",
+        Icon: EmptyIcon,
+        title: "Snake and Ladders",
+      },
     ],
   },
   {
