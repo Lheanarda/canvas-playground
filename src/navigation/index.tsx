@@ -1,18 +1,35 @@
-import { ChartBarIcon, UserCircleIcon } from "@heroicons/react/outline";
+import { LibraryIcon, PlayIcon } from "@heroicons/react/outline";
 import { Navigations } from "@src/typings/navigation";
 
+const EmptyIcon = () => null;
 const navigations: Navigations = [
   {
-    id: "test",
-    navLink: "/test",
-    Icon: () => <ChartBarIcon className="w-6 h-6" />,
-    title: "Dashboard",
+    id: "basic",
+    navLink: "#",
+    Icon: () => <LibraryIcon className="w-6 h-6" />,
+    title: "Introduction",
+    children: [
+      {
+        id: "constellation",
+        navLink: "/constellation",
+        Icon: EmptyIcon,
+        title: "Constellation",
+      },
+    ],
   },
   {
-    id: "user",
-    navLink: "/users",
-    Icon: () => <UserCircleIcon className="w-6 h-6" />,
-    title: "Users",
+    id: "playground",
+    navLink: "#",
+    Icon: () => <PlayIcon className="w-6 h-6" />,
+    title: "Playground",
+    children: [
+      {
+        id: "gravity",
+        navLink: "/users",
+        Icon: EmptyIcon,
+        title: "Gravity",
+      },
+    ],
   },
 ];
 

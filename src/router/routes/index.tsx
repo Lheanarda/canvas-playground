@@ -1,10 +1,8 @@
 import { Route } from "@src/typings/routes";
-import AuthRoutes from "./Auth";
-import TestRoutes from "./Test";
-import UserRoutes from "./User";
+import PlaygroundRoutes from "./Playground";
 
-export const MainPageRoute = "/test";
+export const MainPageRoute = "/constellation";
 
-const Routes: Route[] = [...AuthRoutes, ...UserRoutes, ...TestRoutes];
+const Routes: Route[] = [...PlaygroundRoutes];
 
 export default Routes;
