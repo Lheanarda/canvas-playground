@@ -1,6 +1,4 @@
-import { Theme } from "@src/lib/contexts/ThemeContext";
 import { COLOR_STROKE, MAX_DISTANCE, TOTAL_PARTICLES } from "../constants";
-import { CanvasEl } from "../typings/canvas";
 import {
   Cursor,
   EffectParticlesProps,
@@ -13,6 +11,7 @@ import {
   hanldeGetDistanceBetween2Circle,
 } from "../utils";
 import Particle from "./Particle";
+import { CanvasEl } from "@src/typings/canvas";
 
 class EffectParticles {
   canvasEl: CanvasEl = {} as CanvasEl;

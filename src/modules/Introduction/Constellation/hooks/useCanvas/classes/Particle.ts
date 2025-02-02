@@ -1,4 +1,4 @@
-import { CanvasEl, Position } from "../typings/canvas";
+import { CanvasEl, Position } from "@src/typings/canvas";
 import { ParticleProps, Velocity } from "../typings/particle";
 import {
   handleGetRandomVelocity,

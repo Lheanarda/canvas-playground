@@ -1,6 +1,6 @@
 import { RefObject, useEffect, useState } from "react";
 import TextEffect from "./classes/TextEffect";
-import { CanvasEl } from "@src/modules/Introduction/Constellation/hooks/useCanvas/typings/canvas";
+import { CanvasEl } from "@src/typings/canvas";
 import useDebouncedValue from "../useDebouncedValue";
 import { FONT_FAMILY } from "./constants";
 

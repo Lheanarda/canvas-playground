@@ -1,5 +1,5 @@
+import { CanvasEl } from "@src/typings/canvas";
 import Particle from "../classes/Particle";
-import { CanvasEl } from "./canvas";
 
 export interface SizeEffect {
   width: number;

@@ -1,4 +1,4 @@
-import { Position } from "../typings/canvas";
+import { Position } from "@src/typings/canvas";
 
 export const handleRandomRadius = () => {
   return Math.floor(Math.random() * 10 + 1);

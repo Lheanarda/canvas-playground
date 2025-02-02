@@ -1,4 +1,4 @@
-import { CanvasEl } from "@src/modules/Introduction/Constellation/hooks/useCanvas/typings/canvas";
+import { CanvasEl } from "@src/typings/canvas";
 import TextEffect from "./TextEffect";
 
 interface Props {

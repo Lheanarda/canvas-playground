@@ -1,4 +1,4 @@
-import { CanvasEl } from "@src/modules/Introduction/Constellation/hooks/useCanvas/typings/canvas";
+import { CanvasEl } from "@src/typings/canvas";
 import { generateFontSize, getCenterXandY } from "../utils";
 import Particle from "./Particle";
 import { FONT_FAMILY } from "../constants";

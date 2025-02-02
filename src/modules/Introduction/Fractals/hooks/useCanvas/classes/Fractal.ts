@@ -1,5 +1,4 @@
-import { CanvasEl } from "@src/modules/Introduction/Constellation/hooks/useCanvas/typings/canvas";
-import { Cursor } from "../typings/fractals";
+import { CanvasEl, Cursor } from "@src/typings/canvas";
 
 interface Props {
   canvasEl: CanvasEl;
