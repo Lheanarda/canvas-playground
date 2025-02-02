@@ -45,6 +45,12 @@ const navigations: Navigations = [
         Icon: EmptyIcon,
         title: "Snake and Ladders",
       },
+      {
+        id: "framer",
+        navLink: "/framer",
+        Icon: EmptyIcon,
+        title: "Framer Motion ?",
+      },
     ],
   },
   {

@@ -34,6 +34,10 @@ const TestRoutes: Route[] = [
     path: "/liquid",
     component: lazyWithRetries(() => import("@src/pages/introduction/liquid")),
   },
+  {
+    path: "/framer",
+    component: lazyWithRetries(() => import("@src/pages/introduction/framer")),
+  },
 ];
 
 export default TestRoutes;
