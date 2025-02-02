@@ -20,60 +20,61 @@ class EffectParticles {
 
   totalParticles: number = TOTAL_PARTICLES;
 
-  size: SizeEffect = {
-    height: 0,
-    width: 0,
+  size: SizeEffect = { height: 0, width: 0 };
+
+  cursor: Cursor = { pressed: false, radius: 200, x: 0, y: 0 };
+
+  // Event handler references (to remove them later)
+  private handleMouseMove = (e: MouseEvent) => {
+    if (!this.cursor.pressed) return;
+    this.cursor.x = e.x;
+    this.cursor.y = e.y;
   };
 
-  cursor: Cursor = {
-    pressed: false,
-    radius: 200,
-    x: 0,
-    y: 0,
+  private handleTouchMove = (e: TouchEvent) => {
+    if (!this.cursor.pressed) return;
+    this.cursor.x = e.touches[0].clientX;
+    this.cursor.y = e.touches[0].clientY;
+  };
+
+  private handleMouseDown = (e: MouseEvent) => {
+    this.cursor.pressed = true;
+    this.cursor.x = e.x;
+    this.cursor.y = e.y;
+  };
+
+  private handleTouchStart = (e: TouchEvent) => {
+    this.cursor.pressed = true;
+    this.cursor.x = e.touches[0].clientX;
+    this.cursor.y = e.touches[0].clientY;
+  };
+
+  private handleMouseUp = () => {
+    this.cursor.pressed = false;
+  };
+
+  private handleTouchEnd = () => {
+    this.cursor.pressed = false;
   };
 
   constructor({ canvasEl, size }: EffectParticlesProps) {
     this.canvasEl = canvasEl;
     this.size = size;
 
-    //create style
+    // Set up canvas styles
     canvasEl.context.strokeStyle = COLOR_STROKE;
     const gradient = handleCreateGradient(canvasEl.context, canvasEl.canvas);
     this.canvasEl.context.fillStyle = gradient;
 
     this.createParticles();
 
-    window.addEventListener("mousemove", (e) => {
-      if (!this.cursor.pressed) return;
-      this.cursor.x = e.x;
-      this.cursor.y = e.y;
-    });
-
-    window.addEventListener("touchmove", (e) => {
-      if (!this.cursor.pressed) return;
-      this.cursor.x = e.touches[0].clientX;
-      this.cursor.y = e.touches[0].clientY;
-    });
-
-    window.addEventListener("mousedown", (e) => {
-      this.cursor.pressed = true;
-      this.cursor.x = e.x;
-      this.cursor.y = e.y;
-    });
-
-    window.addEventListener("touchstart", (e) => {
-      this.cursor.pressed = true;
-      this.cursor.x = e.touches[0].clientX;
-      this.cursor.y = e.touches[0].clientY;
-    });
-
-    window.addEventListener("mouseup", () => {
-      this.cursor.pressed = false;
-    });
-
-    window.addEventListener("touchend", () => {
-      this.cursor.pressed = false;
-    });
+    // Attach event listeners
+    window.addEventListener("mousemove", this.handleMouseMove);
+    window.addEventListener("touchmove", this.handleTouchMove);
+    window.addEventListener("mousedown", this.handleMouseDown);
+    window.addEventListener("touchstart", this.handleTouchStart);
+    window.addEventListener("mouseup", this.handleMouseUp);
+    window.addEventListener("touchend", this.handleTouchEnd);
   }
 
   createParticles() {
@@ -119,12 +120,33 @@ class EffectParticles {
           context.beginPath();
           context.moveTo(xA, yA);
           context.lineTo(xB, yB);
-
           context.stroke();
           context.restore();
         }
       }
     }
+  }
+
+  /** Cleanup method to prevent memory leaks */
+  destroy() {
+    // Remove event listeners
+    window.removeEventListener("mousemove", this.handleMouseMove);
+    window.removeEventListener("touchmove", this.handleTouchMove);
+    window.removeEventListener("mousedown", this.handleMouseDown);
+    window.removeEventListener("touchstart", this.handleTouchStart);
+    window.removeEventListener("mouseup", this.handleMouseUp);
+    window.removeEventListener("touchend", this.handleTouchEnd);
+
+    // Clear the particles array
+    this.particles = [];
+
+    // Clear the canvas
+    this.canvasEl.context.clearRect(
+      0,
+      0,
+      this.canvasEl.canvas.width,
+      this.canvasEl.canvas.height
+    );
   }
 }
 

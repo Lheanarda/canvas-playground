@@ -18,13 +18,20 @@ const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
       canvasEl: { context, canvas },
     });
 
+    let animationId: number;
+
     function animate() {
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
       context?.clearRect(0, 0, canvas.width, canvas.height);
       effect.handleParticles();
     }
 
     animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      effect.destroy();
+    };
   }, [ref]);
 };
 

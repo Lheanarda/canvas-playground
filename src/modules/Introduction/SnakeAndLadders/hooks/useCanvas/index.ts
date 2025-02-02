@@ -87,8 +87,9 @@ const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
     setSavedBoard(board);
     setSavedPlayer(player);
 
+    let animationId: number;
     function animate() {
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
       context?.clearRect(0, 0, canvas.width, canvas.height);
       board.draw();
       blocks.forEach((b) => b.draw());
@@ -97,6 +98,11 @@ const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
     }
 
     animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      context?.clearRect(0, 0, canvas.width, canvas.height);
+    };
   }, [ref]);
 
   const handleUpdateDebug = (isDebug: boolean) => {

@@ -23,6 +23,24 @@ class Effect {
     radius: 60,
   };
 
+  // Event handler references for cleanup
+  private handleMouseMove = (e: MouseEvent) => {
+    if (this.mouse.pressed) {
+      this.mouse.x = e.x;
+      this.mouse.y = e.y;
+    }
+  };
+
+  private handleMouseDown = (e: MouseEvent) => {
+    this.mouse.pressed = true;
+    this.mouse.x = e.x;
+    this.mouse.y = e.y;
+  };
+
+  private handleMouseUp = () => {
+    this.mouse.pressed = false;
+  };
+
   constructor(props: Props) {
     this.canvasEl = props.canvasEl;
     const { canvas, context: ctx } = props.canvasEl;
@@ -45,22 +63,10 @@ class Effect {
       radius: 60,
     };
 
-    window.addEventListener("mousemove", (e) => {
-      if (this.mouse.pressed) {
-        this.mouse.x = e.x;
-        this.mouse.y = e.y;
-      }
-    });
-
-    window.addEventListener("mousedown", (e) => {
-      this.mouse.pressed = true;
-      this.mouse.x = e.x;
-      this.mouse.y = e.y;
-    });
-
-    window.addEventListener("mouseup", (e) => {
-      this.mouse.pressed = false;
-    });
+    // Attach event listeners
+    window.addEventListener("mousemove", this.handleMouseMove);
+    window.addEventListener("mousedown", this.handleMouseDown);
+    window.addEventListener("mouseup", this.handleMouseUp);
   }
 
   createParticles() {
@@ -104,6 +110,25 @@ class Effect {
         }
       }
     }
+  }
+
+  /** Cleanup method to prevent memory leaks */
+  destroy() {
+    // Remove event listeners
+    window.removeEventListener("mousemove", this.handleMouseMove);
+    window.removeEventListener("mousedown", this.handleMouseDown);
+    window.removeEventListener("mouseup", this.handleMouseUp);
+
+    // Clear the particles array
+    this.particles = [];
+
+    // Clear the canvas
+    this.canvasEl.context.clearRect(
+      0,
+      0,
+      this.canvasEl.canvas.width,
+      this.canvasEl.canvas.height
+    );
   }
 }
 

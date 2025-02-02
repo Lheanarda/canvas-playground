@@ -35,6 +35,12 @@ class TextEffect {
 
   fontFamily = FONT_FAMILY;
 
+  // Event handler references (to remove them later)
+  private handleMouseMove = (e: MouseEvent) => {
+    this.mouse.x = e.x;
+    this.mouse.y = e.y;
+  };
+
   constructor({ canvasEl, text, fontFamily }: Props) {
     this.canvasEl = canvasEl;
     const { x, y } = getCenterXandY(canvasEl.canvas);
@@ -59,10 +65,7 @@ class TextEffect {
 
     this.wrapText(text);
 
-    window.addEventListener("mousemove", (e) => {
-      this.mouse.x = e.x;
-      this.mouse.y = e.y;
-    });
+    window.addEventListener("mousemove", this.handleMouseMove);
   }
 
   style() {
@@ -164,6 +167,17 @@ class TextEffect {
     this.textY = y;
     this.maxTextWidth = this.canvasEl.canvas.width * 0.8;
     this.fontSize = generateFontSize(this.canvasEl.canvas);
+  }
+
+  destroy() {
+    window.removeEventListener("mousemove", this.handleMouseMove);
+
+    this.canvasEl.context.clearRect(
+      0,
+      0,
+      this.canvasEl.canvas.width,
+      this.canvasEl.canvas.height
+    );
   }
 }
 

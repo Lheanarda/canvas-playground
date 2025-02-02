@@ -37,6 +37,17 @@ class Fractal {
     y: 0,
   };
 
+  // Event handler references (to remove them later)
+  private handleMouseMove = (e: MouseEvent) => {
+    this.cursor.x = e.x;
+    this.cursor.y = e.y;
+  };
+
+  private handleTouchMove = (e: TouchEvent) => {
+    this.cursor.x = e.touches[0].clientX;
+    this.cursor.y = e.touches[0].clientY;
+  };
+
   constructor(props: Props) {
     this.canvasEl = props.canvasEl;
     this.sides = props.sides;
@@ -53,35 +64,9 @@ class Fractal {
 
     this.color = `hsl(${Math.random() * 360},100%,50%)`;
 
-    window.addEventListener("mousemove", (e) => {
-      this.cursor.x = e.x;
-      this.cursor.y = e.y;
-    });
-
-    window.addEventListener("touchmove", (e) => {
-      this.cursor.x = e.touches[0].clientX;
-      this.cursor.y = e.touches[0].clientY;
-    });
-
-    window.addEventListener("mousedown", (e) => {
-      this.cursor.pressed = true;
-      this.cursor.x = e.x;
-      this.cursor.y = e.y;
-    });
-
-    window.addEventListener("touchstart", (e) => {
-      this.cursor.pressed = true;
-      this.cursor.x = e.touches[0].clientX;
-      this.cursor.y = e.touches[0].clientY;
-    });
-
-    window.addEventListener("mouseup", () => {
-      this.cursor.pressed = false;
-    });
-
-    window.addEventListener("touchend", () => {
-      this.cursor.pressed = false;
-    });
+    // Attach event listeners
+    window.addEventListener("mousemove", this.handleMouseMove);
+    window.addEventListener("touchmove", this.handleTouchMove);
   }
 
   draw() {
@@ -160,6 +145,18 @@ class Fractal {
     ctx.beginPath();
     ctx.arc(0, this.size, this.size * 0.1, 0, Math.PI * 2);
     ctx.fill();
+  }
+
+  destroy() {
+    window.removeEventListener("mousemove", this.handleMouseMove);
+    window.removeEventListener("touchmove", this.handleTouchMove);
+
+    this.canvasEl.context.clearRect(
+      0,
+      0,
+      this.canvasEl.canvas.width,
+      this.canvasEl.canvas.height
+    );
   }
 }
 

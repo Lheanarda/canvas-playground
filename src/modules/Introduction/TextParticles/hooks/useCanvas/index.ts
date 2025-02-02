@@ -42,13 +42,20 @@ const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
     setCanvasEl({ context, canvas });
     setTextEffect(effect);
 
+    let animationId: number;
+
     function animate() {
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
       context?.clearRect(0, 0, canvas.width, canvas.height);
       effect.render();
     }
 
     animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      effect.destroy();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref]);
 

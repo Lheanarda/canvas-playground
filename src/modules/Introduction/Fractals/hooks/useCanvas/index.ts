@@ -24,11 +24,18 @@ const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
       spread,
     });
     setPageFractal(fractal);
+
+    let animationId: number;
     function animate() {
       fractal.update();
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     }
     animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      fractal.destroy();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref]);
 

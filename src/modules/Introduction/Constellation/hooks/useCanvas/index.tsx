@@ -25,13 +25,21 @@ const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
       },
     });
 
+    let animationFrameId: number;
+
     function animate() {
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
       context?.clearRect(0, 0, canvas.width, canvas.height);
       effectParticles.handleParticles();
     }
 
     animate();
+
+    // Cleanup function
+    return () => {
+      cancelAnimationFrame(animationFrameId); // Stop animation loop
+      effectParticles.destroy(); // Call the cleanup method
+    };
   }, [ref]);
 };
 
