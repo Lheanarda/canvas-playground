@@ -1,5 +1,6 @@
 import { CanvasEl } from "@src/typings/canvas";
 import Player from "./Player";
+import { SIZE_DEFAULT } from "../constants";
 
 interface Props {
   canvasEl: CanvasEl;
@@ -9,8 +10,6 @@ interface Props {
 }
 class Dice {
   canvasEl: CanvasEl = {} as CanvasEl;
-
-  defaultSize = 0;
 
   x = 0;
 
@@ -38,10 +37,9 @@ class Dice {
 
   constructor(props: Props) {
     this.canvasEl = props.canvasEl;
-    this.defaultSize = props.canvasEl.canvas.width / 10;
     this.x = props.x;
     this.y = props.y;
-    this.size = 1.5 * this.defaultSize;
+    this.size = 1.5 * SIZE_DEFAULT;
 
     this.vx = 0;
     this.vy = 0;

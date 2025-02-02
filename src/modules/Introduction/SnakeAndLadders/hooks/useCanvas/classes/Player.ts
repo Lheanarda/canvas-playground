@@ -1,9 +1,9 @@
 import { CanvasEl } from "@src/typings/canvas";
-import { TOTAL_COLUMNS, TOTAL_ROWS } from "../constants";
+import { SIZE_DEFAULT, TOTAL_COLUMNS, TOTAL_ROWS } from "../constants";
 import Block, { BoardAction } from "./Block";
 
-const JUMP = -2.8; // -2.8
-const JUMP_UP = -6; // -6
+const JUMP = -4;
+const JUMP_UP = -8;
 
 interface Props {
   canvasEl: CanvasEl;
@@ -12,8 +12,6 @@ interface Props {
 }
 
 class Player {
-  defaultSize = 0;
-
   canvasEl: CanvasEl = {} as CanvasEl;
 
   width = 0;
@@ -50,9 +48,8 @@ class Player {
 
   constructor(props: Props) {
     this.canvasEl = props.canvasEl;
-    this.defaultSize = props.canvasEl.canvas.width / 10;
-    this.width = this.defaultSize * 0.8; // 0.8
-    this.height = this.defaultSize * 0.8;
+    this.width = SIZE_DEFAULT * 0.8; // 0.8
+    this.height = SIZE_DEFAULT * 0.8;
     this.blocks = props.blocks;
     const initialBlockIndex = TOTAL_COLUMNS * (TOTAL_ROWS - 1);
 
@@ -67,7 +64,7 @@ class Player {
 
     this.currentBottomCollision = y + this.height;
     this.currentRightCollision = x + this.width;
-    this.currentLeftCollision = x - this.defaultSize;
+    this.currentLeftCollision = x - SIZE_DEFAULT;
 
     this.gravityX = "right";
 
@@ -192,9 +189,8 @@ class Player {
 
   moveRight() {
     if (this.x !== this.currentLeftCollision) {
-      this.currentRightCollision =
-        this.currentRightCollision + this.defaultSize;
-      this.currentLeftCollision = this.currentLeftCollision + this.defaultSize;
+      this.currentRightCollision = this.currentRightCollision + SIZE_DEFAULT;
+      this.currentLeftCollision = this.currentLeftCollision + SIZE_DEFAULT;
     }
     this.vy = JUMP;
     this.gravityX = "right";
@@ -202,9 +198,8 @@ class Player {
 
   moveLeft() {
     if (this.x === this.currentLeftCollision) {
-      this.currentLeftCollision = this.currentLeftCollision - this.defaultSize;
-      this.currentRightCollision =
-        this.currentRightCollision - this.defaultSize;
+      this.currentLeftCollision = this.currentLeftCollision - SIZE_DEFAULT;
+      this.currentRightCollision = this.currentRightCollision - SIZE_DEFAULT;
     }
     this.gravityX = "left";
     this.vy = JUMP;
@@ -212,11 +207,11 @@ class Player {
 
   moveUp() {
     this.vy = JUMP_UP;
-    this.currentBottomCollision -= this.defaultSize;
+    this.currentBottomCollision -= SIZE_DEFAULT;
   }
 
   moveDown() {
-    this.currentBottomCollision += this.defaultSize;
+    this.currentBottomCollision += SIZE_DEFAULT;
   }
 
   moveOnAction(action: BoardAction) {
@@ -236,7 +231,7 @@ class Player {
         this.vy = Math.floor((this.currentBottomCollision - this.y) / 6);
       this.gravityX = "right";
       this.currentRightCollision = x + this.width;
-      this.currentLeftCollision = x - this.defaultSize;
+      this.currentLeftCollision = x - SIZE_DEFAULT;
     }, 800);
   }
 

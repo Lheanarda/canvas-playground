@@ -8,6 +8,7 @@ export const COLOR_PALLETES = [
 
 export const TOTAL_COLUMNS = 10;
 export const TOTAL_ROWS = 10;
+export const SIZE_DEFAULT = 60;
 
 export const BLOCK_ACTION = [
   {

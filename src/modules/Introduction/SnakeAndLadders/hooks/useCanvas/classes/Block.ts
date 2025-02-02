@@ -50,10 +50,15 @@ class Block {
     ctx.fillStyle = "#991b1b";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
+    ctx.strokeStyle = "black";
+
+    // const centerX = this.x + this.size / 2; // Horizontal center of the area
+    // const centerY = this.y + this.size / 2; // Vertical center of the area
+    // ctx.fillText(this.boardIndex.toString(), centerX, centerY);
+    // ctx.strokeRect(this.x, this.y, this.size, this.size);
   }
 
   getCenter() {
-    console.log(this.x, this.y);
     return {
       x: this.x + this.size / 2,
       y: this.y + this.size / 2,

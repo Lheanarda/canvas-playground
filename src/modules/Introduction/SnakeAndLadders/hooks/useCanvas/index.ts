@@ -1,6 +1,11 @@
 import { RefObject, useEffect } from "react";
 import Block, { Direction } from "./classes/Block";
-import { BLOCK_ACTION, TOTAL_COLUMNS, TOTAL_ROWS } from "./constants";
+import {
+  BLOCK_ACTION,
+  SIZE_DEFAULT,
+  TOTAL_COLUMNS,
+  TOTAL_ROWS,
+} from "./constants";
 import Player from "./classes/Player";
 import Dice from "./classes/Dice";
 import Board from "./classes/Board";
@@ -21,7 +26,6 @@ const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
     const startX = 0;
     const startY = 0;
     const blocks: Block[] = [];
-    const SIZE_DEFAULT = canvas.width / 10;
     let number = TOTAL_ROWS * TOTAL_COLUMNS;
     let isDesc = true;
 
@@ -68,8 +72,8 @@ const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
     const board = new Board({
       x: startX,
       y: startY,
-      height: canvas.width,
-      width: canvas.width,
+      height: SIZE_DEFAULT * TOTAL_COLUMNS,
+      width: SIZE_DEFAULT * TOTAL_ROWS,
       canvasEl: { canvas, context },
       imageSrc: BoardImage,
     });
