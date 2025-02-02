@@ -16,6 +16,18 @@ const navigations: Navigations = [
         title: "Constellation",
       },
       {
+        id: "bubble",
+        navLink: "/bubble",
+        Icon: EmptyIcon,
+        title: "Bubble",
+      },
+      {
+        id: "liquid",
+        navLink: "/liquid",
+        Icon: EmptyIcon,
+        title: "Liquid",
+      },
+      {
         id: "fractals",
         navLink: "/fractals",
         Icon: EmptyIcon,

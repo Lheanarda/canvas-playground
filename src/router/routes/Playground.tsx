@@ -26,6 +26,14 @@ const TestRoutes: Route[] = [
       () => import("@src/pages/introduction/snackAndLadders")
     ),
   },
+  {
+    path: "/bubble",
+    component: lazyWithRetries(() => import("@src/pages/introduction/bubble")),
+  },
+  {
+    path: "/liquid",
+    component: lazyWithRetries(() => import("@src/pages/introduction/liquid")),
+  },
 ];
 
 export default TestRoutes;
