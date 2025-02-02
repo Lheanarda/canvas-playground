@@ -7,7 +7,7 @@ interface ThemeConfig {
 }
 
 const themeConfig: ThemeConfig = {
-  defaultSkin: "light", //light | dark
+  defaultSkin: "dark", //light | dark
   defaultFullscreen: false,
 };
 

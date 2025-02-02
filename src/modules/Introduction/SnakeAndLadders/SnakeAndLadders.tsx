@@ -6,7 +6,7 @@ const SnackAndLaddersPage: React.FC = () => {
   const ref = useRef<HTMLCanvasElement>(null);
   return (
     <>
-      <Breadcrumbs currentPage="Constellation" parent="Introduction" />
+      <Breadcrumbs currentPage="Snake and Ladders" parent="Introduction" />
       <div className="flex items-center justify-center w-full mt-3">
         <div className="relative">
           <Canvas className=" w-full" ref={ref} />
