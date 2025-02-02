@@ -22,8 +22,9 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
   const { isFullscreen } = useContext(
     FullscreenContext
   ) as FullscreenContextType;
+
   return (
-    <div className="background" role="container">
+    <div className="background z-10" role="container">
       <div
         className={
           isFullscreen ? CONTAINER_CLASS.fullscreen : CONTAINER_CLASS.center
