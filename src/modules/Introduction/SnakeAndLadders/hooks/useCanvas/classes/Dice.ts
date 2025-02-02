@@ -54,10 +54,11 @@ class Dice {
     this.randomize = false;
     this.value = 1;
 
-    window.addEventListener("click", () => this.rollDice());
+    window.addEventListener("click", () => {
+      this.rollDice();
+    });
 
     window.addEventListener("touchend", () => this.rollDice());
-    // window.addEventListener('touchend',() => this.player.move(1))
   }
 
   draw() {
@@ -85,6 +86,8 @@ class Dice {
     );
 
     ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle"; // Center the text properly
     ctx.fillText(
       "roll!",
       this.collisionLeft + this.size / 2,
@@ -94,7 +97,7 @@ class Dice {
 
   update() {
     this.draw();
-    this.vy += this.size * 0.05;
+    this.vy += this.size * 0.03;
     this.y += this.vy;
 
     this.x += this.vx;

@@ -23,6 +23,8 @@ class Board {
 
   height = 0;
 
+  debug = false;
+
   constructor(props: Props) {
     this.canvasEl = props.canvasEl;
     this.imageSrc = props.imageSrc;
@@ -37,7 +39,13 @@ class Board {
 
   draw() {
     const ctx = this.canvasEl.context;
-    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    if (!this.debug) {
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
+  }
+
+  setDebug(isDebug: boolean) {
+    this.debug = isDebug;
   }
 }
 

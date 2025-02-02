@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from "react";
+import { RefObject, useEffect, useState } from "react";
 import Block, { Direction } from "./classes/Block";
 import {
   BLOCK_ACTION,
@@ -13,6 +13,11 @@ import BoardImage from "./assets/images/board.jpg";
 import PlayerImage from "./assets/images/mario.png";
 
 const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
+  const [debug, setDebug] = useState(false);
+  const [savedPlayer, setSavedPlayer] = useState<Player | null>(null);
+  const [savedBoard, setSavedBoard] = useState<Board | null>(null);
+  const [savedBlocks, setSavedBlocks] = useState<Block[]>([]);
+
   useEffect(() => {
     if (!ref.current) return;
     const canvas = ref.current;
@@ -78,6 +83,10 @@ const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
       imageSrc: BoardImage,
     });
 
+    setSavedBlocks(blocks);
+    setSavedBoard(board);
+    setSavedPlayer(player);
+
     function animate() {
       requestAnimationFrame(animate);
       context?.clearRect(0, 0, canvas.width, canvas.height);
@@ -89,6 +98,16 @@ const useCanvas = (ref: RefObject<HTMLCanvasElement>) => {
 
     animate();
   }, [ref]);
+
+  const handleUpdateDebug = (isDebug: boolean) => {
+    if (!savedBoard || !savedPlayer) return;
+    setDebug(isDebug);
+    savedBlocks.forEach((block) => block.setDebug(isDebug));
+    savedBoard.setDebug(isDebug);
+    savedPlayer.setDebug(isDebug);
+  };
+
+  return { debug, handleUpdateDebug };
 };
 
 export default useCanvas;

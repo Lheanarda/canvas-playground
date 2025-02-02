@@ -91,26 +91,31 @@ class Player {
 
   draw() {
     const ctx = this.canvasEl.context;
-    // ctx.fillStyle = '#f43f5e'
-    // ctx.fillRect(this.x, this.y, this.width, this.height)
-    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+
+    if (this.debug) {
+      ctx.fillStyle = "yellow";
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+    } else {
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
 
     if (this.debug) {
       //debug
-      ctx.fillStyle = "black";
+      ctx.fillStyle = "orangered";
+      const debugSize = 6;
       //left
       ctx.fillRect(
         this.currentLeftCollision,
         this.currentBottomCollision,
-        4,
-        4
+        debugSize,
+        debugSize
       );
       //right
       ctx.fillRect(
-        this.currentRightCollision - 4,
+        this.currentRightCollision - debugSize,
         this.currentBottomCollision,
-        4,
-        4
+        debugSize,
+        debugSize
       );
     }
   }
@@ -266,6 +271,10 @@ class Player {
     }
 
     return currentBlock;
+  }
+
+  setDebug(isDebug: boolean) {
+    this.debug = isDebug;
   }
 }
 
