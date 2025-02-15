@@ -1,3 +1,4 @@
+import { getCursorPosition } from "@src/lib/utils/canvas";
 import { COLOR_STROKE, MAX_DISTANCE, TOTAL_PARTICLES } from "../constants";
 import {
   Cursor,
@@ -27,26 +28,46 @@ class EffectParticles {
   // Event handler references (to remove them later)
   private handleMouseMove = (e: MouseEvent) => {
     if (!this.cursor.pressed) return;
-    this.cursor.x = e.x;
-    this.cursor.y = e.y;
+    const { x, y } = getCursorPosition({
+      canvas: this.canvasEl.canvas,
+      cursorX: e.x,
+      cursorY: e.y,
+    });
+    this.cursor.x = x;
+    this.cursor.y = y;
   };
 
   private handleTouchMove = (e: TouchEvent) => {
     if (!this.cursor.pressed) return;
-    this.cursor.x = e.touches[0].clientX;
-    this.cursor.y = e.touches[0].clientY;
+    const { x, y } = getCursorPosition({
+      canvas: this.canvasEl.canvas,
+      cursorX: e.touches[0].clientX,
+      cursorY: e.touches[0].clientY,
+    });
+    this.cursor.x = x;
+    this.cursor.y = y;
   };
 
   private handleMouseDown = (e: MouseEvent) => {
     this.cursor.pressed = true;
-    this.cursor.x = e.x;
-    this.cursor.y = e.y;
+    const { x, y } = getCursorPosition({
+      canvas: this.canvasEl.canvas,
+      cursorX: e.x,
+      cursorY: e.y,
+    });
+    this.cursor.x = x;
+    this.cursor.y = y;
   };
 
   private handleTouchStart = (e: TouchEvent) => {
     this.cursor.pressed = true;
-    this.cursor.x = e.touches[0].clientX;
-    this.cursor.y = e.touches[0].clientY;
+    const { x, y } = getCursorPosition({
+      canvas: this.canvasEl.canvas,
+      cursorX: e.touches[0].clientX,
+      cursorY: e.touches[0].clientY,
+    });
+    this.cursor.x = x;
+    this.cursor.y = y;
   };
 
   private handleMouseUp = () => {

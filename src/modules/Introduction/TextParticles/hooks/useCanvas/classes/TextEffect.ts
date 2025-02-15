@@ -2,6 +2,7 @@ import { CanvasEl } from "@src/typings/canvas";
 import { generateFontSize, getCenterXandY } from "../utils";
 import Particle from "./Particle";
 import { FONT_FAMILY } from "../constants";
+import { getCursorPosition } from "@src/lib/utils/canvas";
 
 interface Props {
   canvasEl: CanvasEl;
@@ -37,8 +38,13 @@ class TextEffect {
 
   // Event handler references (to remove them later)
   private handleMouseMove = (e: MouseEvent) => {
-    this.mouse.x = e.x;
-    this.mouse.y = e.y;
+    const { x, y } = getCursorPosition({
+      canvas: this.canvasEl.canvas,
+      cursorX: e.x,
+      cursorY: e.y,
+    });
+    this.mouse.x = x;
+    this.mouse.y = y;
   };
 
   constructor({ canvasEl, text, fontFamily }: Props) {

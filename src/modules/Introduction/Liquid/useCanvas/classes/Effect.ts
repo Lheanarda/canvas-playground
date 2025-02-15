@@ -1,5 +1,6 @@
 import { CanvasEl } from "@src/typings/canvas";
 import Particle from "./Particle";
+import { getCursorPosition } from "@src/lib/utils/canvas";
 
 interface Props {
   canvasEl: CanvasEl;
@@ -26,15 +27,25 @@ class Effect {
   // Event handler references for cleanup
   private handleMouseMove = (e: MouseEvent) => {
     if (this.mouse.pressed) {
-      this.mouse.x = e.x;
-      this.mouse.y = e.y;
+      const { x, y } = getCursorPosition({
+        canvas: this.canvasEl.canvas,
+        cursorX: e.x,
+        cursorY: e.y,
+      });
+      this.mouse.x = x;
+      this.mouse.y = y;
     }
   };
 
   private handleMouseDown = (e: MouseEvent) => {
     this.mouse.pressed = true;
-    this.mouse.x = e.x;
-    this.mouse.y = e.y;
+    const { x, y } = getCursorPosition({
+      canvas: this.canvasEl.canvas,
+      cursorX: e.x,
+      cursorY: e.y,
+    });
+    this.mouse.x = x;
+    this.mouse.y = y;
   };
 
   private handleMouseUp = () => {
