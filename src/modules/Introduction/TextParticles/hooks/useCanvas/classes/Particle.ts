@@ -48,7 +48,7 @@ class Particle {
     this.canvasEl = canvasEl;
     this.effect = effect;
     this.x = Math.random() * canvas.width;
-    this.y = canvas.height;
+    this.y = Math.random() * canvas.height;
     this.color = color;
     this.originX = x;
     this.originY = y;

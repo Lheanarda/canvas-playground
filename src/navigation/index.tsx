@@ -61,7 +61,7 @@ const navigations: Navigations = [
     children: [
       {
         id: "gravity",
-        navLink: "/users",
+        navLink: "/gravity",
         Icon: EmptyIcon,
         title: "Gravity",
       },

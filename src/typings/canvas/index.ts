@@ -13,3 +13,8 @@ export interface CanvasEl {
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
 }
+
+export interface Velocity {
+  x: number;
+  y: number;
+}
