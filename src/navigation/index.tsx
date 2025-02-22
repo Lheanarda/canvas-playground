@@ -7,7 +7,7 @@ const navigations: Navigations = [
     id: "basic",
     navLink: "#",
     Icon: () => <LibraryIcon className="w-6 h-6" />,
-    title: "Introduction",
+    title: "Sample",
     children: [
       {
         id: "constellation",
@@ -64,6 +64,12 @@ const navigations: Navigations = [
         navLink: "/gravity",
         Icon: EmptyIcon,
         title: "Gravity",
+      },
+      {
+        id: "converter",
+        navLink: "/converter",
+        Icon: EmptyIcon,
+        title: "Converter",
       },
     ],
   },

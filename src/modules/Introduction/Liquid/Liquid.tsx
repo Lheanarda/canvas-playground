@@ -8,7 +8,7 @@ const LiquidPage: React.FC = () => {
   useCanvas(ref);
   return (
     <>
-      <Breadcrumbs currentPage="Liquid" parent="Introduction" />
+      <Breadcrumbs currentPage="Liquid" parent="Sample" />
       <div className="flex items-center justify-center w-full mt-3">
         <div className="relative">
           <Canvas

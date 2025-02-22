@@ -9,7 +9,7 @@ const FractalsPage: React.FC = () => {
   const { Spread, OffsieBranchEffect } = useCanvas(ref);
   return (
     <>
-      <Breadcrumbs currentPage="Fractals" parent="Introduction" />
+      <Breadcrumbs currentPage="Fractals" parent="Sample" />
       <div className="flex items-center justify-center w-full mt-3 relative">
         <div className="absolute left-0 top-0 space-y-3 w-full h-full flex flex-col justify-start items-start text-2xl dark:text-blue-100 text-blue-600 font-bold">
           <div className="flex-col flex">

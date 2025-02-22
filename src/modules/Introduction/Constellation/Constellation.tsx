@@ -8,7 +8,7 @@ const ConstellationPage: React.FC = () => {
   useCanvas(ref);
   return (
     <>
-      <Breadcrumbs currentPage="Constellation" parent="Introduction" />
+      <Breadcrumbs currentPage="Constellation" parent="Sample" />
       <div className="flex items-center justify-center w-full mt-3">
         <div className="relative">
           <div className="absolute left-0 top-0  w-full h-full flex justify-end items-end text-2xl dark:text-blue-100 text-blue-600 font-bold">

@@ -9,7 +9,7 @@ const TextParticlesPage: React.FC = () => {
     useCanvas(ref);
   return (
     <>
-      <Breadcrumbs currentPage="Text Particles" parent="Introduction" />
+      <Breadcrumbs currentPage="Text Particles" parent="Sample" />
       <div className="flex items-center justify-center w-full mt-3">
         <div className="relative">
           <div className="absolute left-0 top-0 space-y-3 w-full h-full flex flex-col justify-start items-start   font-bold">

@@ -8,7 +8,7 @@ const SnackAndLaddersPage: React.FC = () => {
   const { debug, handleUpdateDebug } = useCanvas(ref);
   return (
     <>
-      <Breadcrumbs currentPage="Snake and Ladders" parent="Introduction" />
+      <Breadcrumbs currentPage="Snake and Ladders" parent="Sample" />
       <div className="flex items-center justify-center w-full mt-3">
         <div className="relative">
           <div className="absolute  right-0 top-0">
