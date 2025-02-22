@@ -1,6 +1,7 @@
 import { CanvasEl, Cursor } from "@src/typings/canvas";
 import Particle from "./Particle";
 import { getCenterXandY } from "@src/modules/Introduction/SnakeAndLadders/hooks/useCanvas/utils";
+import { getCursorPosition } from "@src/lib/utils/canvas";
 
 interface Props {
   canvasEl: CanvasEl;
@@ -13,31 +14,49 @@ class Effect {
 
   gap = 3;
 
-  cursor: Cursor = {
+  mouse: Cursor = {
     pressed: false,
-    radius: 200,
+    radius: 20000,
     x: 0,
     y: 0,
   };
 
   img = new Image();
 
+  // Event handler references (to remove them later)
+  private handleMouseMove = (e: MouseEvent) => {
+    const { x, y } = getCursorPosition({
+      canvas: this.canvasEl.canvas,
+      cursorX: e.x,
+      cursorY: e.y,
+    });
+    this.mouse.x = x;
+    this.mouse.y = y;
+  };
+
   constructor(props: Props) {
     this.canvasEl = props.canvasEl;
     this.gap = props.gap;
-    this.img.src = "/images/Queens-Gambit.webp";
+    this.img.src = "/images/nezuko.png";
     this.draw();
+    window.addEventListener("mousemove", this.handleMouseMove);
   }
 
   draw() {
     const { context, canvas } = this.canvasEl;
 
+    // improve performance by reducing the pic size
+    const scaledWidth = this.img.width / 1;
+    const scaledHeight = this.img.height / 1;
+
     this.img.onload = () => {
       const { x, y } = getCenterXandY(canvas);
       context.drawImage(
         this.img,
-        x - this.img.width / 2,
-        y - this.img.height / 2
+        x - scaledWidth / 2,
+        y - scaledHeight / 2,
+        scaledWidth,
+        scaledHeight
       );
       this.convertToParticles();
     };
@@ -47,7 +66,6 @@ class Effect {
     const { canvas, context } = this.canvasEl;
 
     this.particles = [];
-    context.strokeStyle = "#5C738A";
 
     const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
 
@@ -65,9 +83,10 @@ class Effect {
           this.particles.push(
             new Particle({
               canvasEl: this.canvasEl,
-              position: { x, y },
-              size: this.gap,
+              x,
+              y,
               color,
+              effect: this,
             })
           );
         }
