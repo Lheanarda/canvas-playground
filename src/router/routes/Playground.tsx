@@ -10,6 +10,10 @@ const PlaygroundRoutes: Route[] = [
     path: "/converter",
     component: lazyWithRetries(() => import("@src/pages/playground/converter")),
   },
+  {
+    path: "/code",
+    component: lazyWithRetries(() => import("@src/pages/playground/code")),
+  },
 ];
 
 export default PlaygroundRoutes;

@@ -59,6 +59,7 @@ class Effect {
         scaledHeight
       );
       this.convertToParticles();
+      console.log(this.particles);
     };
   }
 

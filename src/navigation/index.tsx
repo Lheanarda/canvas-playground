@@ -71,6 +71,12 @@ const navigations: Navigations = [
         Icon: EmptyIcon,
         title: "Converter",
       },
+      {
+        id: "code",
+        navLink: "/code",
+        Icon: EmptyIcon,
+        title: "Code",
+      },
     ],
   },
 ];
