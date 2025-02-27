@@ -1,8 +1,18 @@
-import { LibraryIcon, PlayIcon } from "@heroicons/react/outline";
+import {
+  LibraryIcon,
+  PlayIcon,
+  AcademicCapIcon,
+} from "@heroicons/react/outline";
 import { Navigations } from "@src/typings/navigation";
 
 const EmptyIcon = () => null;
 const navigations: Navigations = [
+  {
+    id: "basic",
+    navLink: "/start",
+    Icon: () => <AcademicCapIcon className="w-6 h-6" />,
+    title: "Getting Started",
+  },
   {
     id: "basic",
     navLink: "#",
