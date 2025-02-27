@@ -3,7 +3,7 @@ import PlaygroundRoutes from "./Playground";
 import IntroductionRoutes from "./Introduction";
 import { lazyWithRetries } from "@src/lib/utils/core";
 
-export const MainPageRoute = "/constellation";
+export const MainPageRoute = "/start";
 
 const Routes: Route[] = [
   {
