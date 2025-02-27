@@ -2,6 +2,7 @@ import useTheme from "@src/lib/hooks/useTheme";
 import { useState, useRef, useEffect } from "react";
 import FloatingOrbs from "./FloatingOrbs";
 import useForceFullPageReloadOnNavigation from "./useForceFullPageNavigation";
+import Card from "@src/components/Card";
 
 const CanvasPresentation = () => {
   useForceFullPageReloadOnNavigation();
@@ -339,65 +340,63 @@ const CanvasPresentation = () => {
 
   return (
     <div className="flex space-x-3 pt-10">
-      <div className="w-full flex-1 bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
+      <Card outline className="px-8 pt-8 pb-6 ">
         {/* Content */}
-        <div className="p-6">
-          <div className="mb-8 h-24">
-            <h2 className="text-2xl font-bold mb-4 text-primary">
-              {slides[currentSlide].title}
-            </h2>
-            <p className={`text-lg ${appTheme.text}`}>
-              {slides[currentSlide].description}
-            </p>
-          </div>
-
-          {/* Canvas Container */}
-          <div className="relative w-full h-64 border border-gray-200 rounded-lg mb-6 overflow-hidden">
-            <canvas ref={canvasRef} className="w-full h-full" />
-          </div>
-
-          {/* Navigation */}
-          <div className="flex justify-between items-center">
-            <button
-              onClick={goToPrevSlide}
-              disabled={currentSlide === 0}
-              className={`px-4 py-2 rounded ${
-                currentSlide === 0
-                  ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-blue-600 text-white hover:bg-blue-700"
-              }`}
-            >
-              Previous
-            </button>
-
-            {/* Progress indicator */}
-            <div className="flex space-x-2">
-              {slides.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-3 h-3 rounded-full ${
-                    index === currentSlide ? "bg-blue-600" : "bg-gray-300"
-                  }`}
-                  onClick={() => setCurrentSlide(index)}
-                  style={{ cursor: "pointer" }}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={goToNextSlide}
-              disabled={currentSlide === slides.length - 1}
-              className={`px-4 py-2 rounded ${
-                currentSlide === slides.length - 1
-                  ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-blue-600 text-white hover:bg-blue-700"
-              }`}
-            >
-              Next
-            </button>
-          </div>
+        <div className="mb-8 h-24">
+          <h2 className="text-2xl font-bold mb-4 text-primary">
+            {slides[currentSlide].title}
+          </h2>
+          <p className={`text-lg ${appTheme.text}`}>
+            {slides[currentSlide].description}
+          </p>
         </div>
-      </div>
+
+        {/* Canvas Container */}
+        <div className="relative w-full h-64 border border-slate-600 rounded-lg mb-6 overflow-hidden">
+          <canvas ref={canvasRef} className="w-full h-full" />
+        </div>
+
+        {/* Navigation */}
+        <div className="flex justify-between items-center">
+          <button
+            onClick={goToPrevSlide}
+            disabled={currentSlide === 0}
+            className={`px-4 py-2 rounded ${
+              currentSlide === 0
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-blue-600 text-white hover:bg-blue-700"
+            }`}
+          >
+            Previous
+          </button>
+
+          {/* Progress indicator */}
+          <div className="flex space-x-2">
+            {slides.map((_, index) => (
+              <div
+                key={index}
+                className={`w-3 h-3 rounded-full ${
+                  index === currentSlide ? "bg-blue-600" : "bg-gray-300"
+                }`}
+                onClick={() => setCurrentSlide(index)}
+                style={{ cursor: "pointer" }}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={goToNextSlide}
+            disabled={currentSlide === slides.length - 1}
+            className={`px-4 py-2 rounded ${
+              currentSlide === slides.length - 1
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-blue-600 text-white hover:bg-blue-700"
+            }`}
+          >
+            Next
+          </button>
+        </div>
+      </Card>
       <div className="flex-initial w-[30%]">
         <FloatingOrbs />
       </div>
