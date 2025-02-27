@@ -14,6 +14,10 @@ const PlaygroundRoutes: Route[] = [
     path: "/code",
     component: lazyWithRetries(() => import("@src/pages/playground/code")),
   },
+  {
+    path: "/collision",
+    component: lazyWithRetries(() => import("@src/pages/playground/collision")),
+  },
 ];
 
 export default PlaygroundRoutes;

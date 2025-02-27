@@ -66,6 +66,12 @@ const navigations: Navigations = [
         title: "Gravity",
       },
       {
+        id: "collision",
+        navLink: "/collision",
+        Icon: EmptyIcon,
+        title: "Collision",
+      },
+      {
         id: "converter",
         navLink: "/converter",
         Icon: EmptyIcon,
