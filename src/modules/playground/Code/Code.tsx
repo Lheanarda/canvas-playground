@@ -61,23 +61,27 @@ const CodePage: React.FC = () => {
     <>
       <Breadcrumbs currentPage="Code" parent="Playground" />
       <div className="flex justify-between w-full mt-3 space-x-3">
-        <div className="flex-1 space-y-3 h-full">
+        <div className="w-[50%] space-y-3 h-full">
           <ReactCodeMirror
             className="flex-1"
             extensions={[html()]}
             value={codeHtml}
             onChange={setCodeHtml}
             theme={"dark"}
+            maxHeight="85vh"
           />
           <ReactCodeMirror
-            className="flex-1"
+            className="flex-1 custom-scrollbar"
             extensions={[javascript()]}
             value={codeJs}
             onChange={setCodeJs}
             theme={"dark"}
+            width="100%"
+            maxHeight="70vh"
+            maxWidth="100%"
           />
         </div>
-        <div className="flex-1 space-y-3">
+        <div className="w-[50%] space-y-3">
           <iframe
             id="sandbox-frame"
             srcDoc={`<script>

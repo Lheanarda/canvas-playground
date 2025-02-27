@@ -37,6 +37,26 @@
         width: 16px;
         vertical-align: bottom;
     }
+
+    .custom-scrollbar .cm-scroller {
+        scrollbar-width: thin; /* Firefox */
+        scrollbar-color: #4a4a4a #1e1e1e; /* Thumb and track color */
+      }
+      
+      /* WebKit-based browsers (Chrome, Safari) */
+      .custom-scrollbar .cm-scroller::-webkit-scrollbar {
+        width: 6px; /* Thin scrollbar */
+        height: 6px; /* For horizontal scroll */
+      }
+      
+      .custom-scrollbar .cm-scroller::-webkit-scrollbar-thumb {
+        background: #4a4a4a; /* Dark gray thumb */
+        border-radius: 4px; /* Rounded corners */
+      }
+      
+      .custom-scrollbar .cm-scroller::-webkit-scrollbar-track {
+        background: #1e1e1e; /* Dark background */
+      }
    
 }
 
